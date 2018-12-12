@@ -24,6 +24,10 @@ export default new Router({
   routes: [
     ...demoRoutes,
     {
+      path: '/dashboard',
+      redirect: { name: 'sinf-dashboard' },
+    },
+    {
       path: '*',
       redirect: { name: 'dashboard' },
     },
@@ -82,6 +86,12 @@ export default new Router({
           name: 'dashboard',
           path: 'dashboard',
           component: lazyLoading('dashboard/Dashboard'),
+          default: true,
+        },
+        {
+          name: 'sinf-dashboard',
+          path: 'sinf-dashboard',
+          component: lazyLoading('sinf-dashboard/Sinf-Dashboard'),
           default: true,
         },
         {
