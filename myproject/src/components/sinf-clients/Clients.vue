@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import OverviewTab from 'components/dashboard/features-tab/FeaturesTab.vue'
-import SetupProfileTab from 'components/dashboard/setup-profile-tab/SetupProfileTab.vue'
+import OverviewTab from 'components/sinf-dashboard/features-tab/FeaturesTab.vue'
+import SetupProfileTab from 'components/sinf-dashboard/setup-profile-tab/SetupProfileTab.vue'
 import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
 
 export default {
