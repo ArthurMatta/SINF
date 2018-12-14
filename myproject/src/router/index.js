@@ -157,6 +157,38 @@ export default new Router({
           }
         },
         {
+          name: 'salesorders',
+          path: 'salesorders',
+          component: lazyLoading('sinf-salesorders/Sinf-salesorders'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+          }
+        },
+        {
+          name: 'salesrep',
+          path: 'salesrep',
+          component: lazyLoading('sinf-salesrep/Sinf-salesrep'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+          }
+        },
+         {
+          name: 'leads',
+          path: 'leads',
+          component: lazyLoading('sinf-leads/Sinf-leads'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+          }
+    	},
+    	{
+          name: 'clients',
+          path: 'clients',
+          component: lazyLoading('sinf-clients/Sinf-clients'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tabs'
+          }
+        },
+        {
           name: 'ui',
           path: 'ui',
           component: EmptyParentComponent,
