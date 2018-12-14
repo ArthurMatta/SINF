@@ -36,7 +36,7 @@ import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue
 import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
 
 export default {
-  name: 'sinf-dashboard',
+  name: 'Sinf-Dashboard',
   components: {
     DataVisualisationTab,
     DashboardInfoWidgets,
