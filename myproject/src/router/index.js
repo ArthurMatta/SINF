@@ -190,6 +190,14 @@ export default new Router({
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
           }
     	},
+      {
+          name: 'create-lead',
+          path: 'create-lead',
+          component: lazyLoading('forms/create-lead/create-lead'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+          }
+      },
     	{
           name: 'clients',
           path: 'clients',
