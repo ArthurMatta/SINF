@@ -6,7 +6,7 @@
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-components"></span>
-          <span>{{ $t('menu.salesOrder') }}</span>
+          <span>{{ $t('menu.leads') }}</span>
         </span>
       </sidebar-link>
       <sidebar-link
@@ -23,6 +23,14 @@
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-user"></span>
           <span>{{ $t('Clients') }}</span>
+        </span>
+      </sidebar-link>
+      <sidebar-link
+        :to="{ name: 'salesrep' }">
+        <span slot="title">
+          <span
+            class="sidebar-menu-item-icon fa fa-address-card-o"></span>
+          <span>{{ $t('Representative') }}</span>
         </span>
       </sidebar-link>
       <sidebar-link-group>

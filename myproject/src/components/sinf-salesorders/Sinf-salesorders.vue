@@ -10,7 +10,7 @@
             :append-params="moreParams"
           >
             <template slot="name" slot-scope="props">
-              <router-link class="link" :to="{name: 'saleDescription', params: { deal: {name: 'Worten'} } }">
+              <router-link class="link" :to="{name: 'saleDescription', params: { deal: {name: props.rowData.name } } }">
                 {{ props.rowData.name }}
               </router-link>
             </template>
