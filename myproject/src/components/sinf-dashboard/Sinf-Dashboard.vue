@@ -1,7 +1,5 @@
 <template>
 	<div class="sinf-dashboard">
-
-
 		<vuestic-widget class="no-padding no-v-padding">
 			<vuestic-tabs class="tabs"
 			:names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
