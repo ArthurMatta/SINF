@@ -17,6 +17,14 @@
           <span>{{ $t('menu.dashboard') }}</span>
         </span>
       </sidebar-link>
+      <sidebar-link
+        :to="{ name: 'clients' }">
+        <span slot="title">
+          <span
+            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-user"></span>
+          <span>{{ $t('Clients') }}</span>
+        </span>
+      </sidebar-link>
       <sidebar-link-group>
         <span slot="title">
           <span

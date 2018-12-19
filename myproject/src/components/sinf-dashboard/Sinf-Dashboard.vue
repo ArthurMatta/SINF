@@ -1,5 +1,5 @@
 <template>
-  <div class="sinf-dashboard">
+	<div class="sinf-dashboard">
 
 
 		<vuestic-widget class="no-padding no-v-padding">
