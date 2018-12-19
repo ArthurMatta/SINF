@@ -2,6 +2,14 @@
   <vuestic-sidebar :hidden="isOpen">
     <template slot="menu">
       <sidebar-link
+        :to="{ name: 'salesorders' }">
+        <span slot="title">
+          <span
+            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-components"></span>
+          <span>{{ $t('menu.salesOrder') }}</span>
+        </span>
+      </sidebar-link>
+      <sidebar-link
         :to="{ name: 'dashboard' }">
         <span slot="title">
           <span

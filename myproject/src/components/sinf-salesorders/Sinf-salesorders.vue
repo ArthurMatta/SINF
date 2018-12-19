@@ -2,74 +2,60 @@
   <div>
     <div class="row">
       <div class="col-xs-12 col-md-12">
-        <vuestic-widget :headerText="$t('tables.basic')">
+        <vuestic-widget :headerText="$t('tables.deals')">
           <div class="table-responsive">
             <table class="table table-striped first-td-padding">
               <thead>
               <tr>
-                <td>{{'tables.headings.name' | translate}}</td>
-                <td>{{'tables.headings.email' | translate}}</td>
-                <td>{{'tables.headings.city' | translate}}</td>
-                <td align="right">{{'tables.headings.score' | translate}}</td>
+                <td>{{'tables.headings.dealname' | translate}}</td>
+                <td>{{'tables.headings.dealstage' | translate}}</td>
+                <td>{{'tables.headings.closedate' | translate}}</td>
+                <td>{{'tables.headings.dealowner' | translate}}</td>
+                <td>{{'tables.headings.amount' | translate}}</td>
+                <td>{{'tables.headings.associated' | translate}}</td>
                 <td></td>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td>Matthew McCormick</td>
-                <td>matthew30@mail.ol</td>
-                <td>Vancouver</td>
-                <td align="right">93</td>
-                <td></td>
+                <td>
+                  <router-link class='link' :to="{name: 'saleDescription', params: { deal: {name: 'Worten', stage: 0, closeDate: 'Apr 26, 2019', owner: 'Arthur Johas Matta', amount: '350,000', associatedWith: 'Worten'} }}">Worten</router-link>
+                </td>
+                <td>{{'tables.dataTable.appointmentScheduled' | translate}}</td>
+                <td>Apr 26, 2019</td>
+                <td>Arthur Johas Matta</td>
+                <td>$350,000</td>
+                <td>Worten</td>
               </tr>
               <tr>
-                <td>Nancy Bo</td>
-                <td>nancy@boonweb.com</td>
-                <td>Washington</td>
-                <td align="right">280</td>
-                <td></td>
+                <td>
+                  <router-link class='link' :to="{name: 'saleDescription', params: { deal: {name: 'Fnac', stage: 1, closeDate: 'Nov 10, 2019', owner: 'Andre Mori', amount: '275,000', associatedWith: 'Fnac'} }}">Fnac</router-link>
+                </td>
+                <td>{{'tables.dataTable.qualifiedToBuy' | translate}}</td>
+                <td>Nov 10, 2019</td>
+                <td>Andre Mori</td>
+                <td>$275,000</td>
+                <td>Fnac</td>
               </tr>
               <tr>
-                <td>Frederiko Lopez</td>
-                <td>fr.lopez@webmail.sp</td>
-                <td>Barcelona</td>
-                <td align="right">16</td>
-                <td></td>
+                <td>
+                  <router-link class='link' :to="{name: 'saleDescription', params: { deal: {name: 'HubSpot', stage: 4, closeDate: 'Sep 05, 2019', owner: 'Daniel Bradaschia', amount: '50,000', associatedWith: 'HubSpot'} }}" v-model="deal">HubSpot</router-link>
+                </td>
+                <td>{{'tables.dataTable.contractSent' | translate}}</td>
+                <td>Sep 05, 2019</td>
+                <td>Daniel Bradaschia</td>
+                <td>$50,000</td>
+                <td>HubSpot</td>
               </tr>
               <tr>
-                <td>Stanley Hummer</td>
-                <td>mr_winner_2999@gmail.cb</td>
-                <td>Manchester</td>
-                <td align="right">57</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Lendley Wintz</td>
-                <td>9938198146@mailster.io</td>
-                <td>Wien</td>
-                <td align="right">113</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Barbara Noz</td>
-                <td>barbaranoz@mailster.io</td>
-                <td>Brussels</td>
-                <td align="right">68</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Matthew McCormick</td>
-                <td>matthew30@mail.ol</td>
-                <td>Vancouver</td>
-                <td align="right">93</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Nancy Bo</td>
-                <td>nancy@boonweb.com</td>
-                <td>Washington</td>
-                <td align="right">280</td>
-                <td></td>
+                <td>
+                  <router-link class='link' :to="{name: 'saleDescription', params: { deal: {name: 'H&M', stage: 2, closeDate: 'Jan 31, 2019', owner: 'Ana Maria Braga', amount: '127,000', associatedWith: 'H&M'} }}">H&M</router-link>
+                </td>
+                <td>{{'tables.dataTable.presentationScheduled' | translate}}</td>
+                <td>Jan 31, 2019</td>
+                <td>Ana Maria Braga</td>
+                <td>$127,000</td>
+                <td>H&M</td>
               </tr>
               </tbody>
             </table>
@@ -79,163 +65,51 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
-        <vuestic-widget :headerText="$t('tables.styled')">
-          <div class="table-responsive">
-            <table class="table table-striped table-sm color-icon-label-table">
-              <thead>
-              <tr>
-                <td></td>
-                <td>{{'tables.headings.name' | translate}}</td>
-                <td>{{'tables.headings.email' | translate}}</td>
-                <td>{{'tables.headings.city' | translate}}</td>
-                <td align="right">{{'tables.headings.score' | translate}}</td>
-                <td align="middle"></td>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td></td>
-                <td>Matthew McCormick</td>
-                <td>matthew30@mail.ol</td>
-                <td>Vancouver</td>
-                <td align="right">93</td>
-                <td align="middle"></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Nancy Bo</td>
-                <td>nancy@boonweb.com</td>
-                <td>Washington</td>
-                <td align="right">280</td>
-                <td align="middle"></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Frederiko Lopez</td>
-                <td>fr.lopez@webmail.sp</td>
-                <td>Barcelona</td>
-                <td align="right">16</td>
-                <td align="middle"></td>
-              </tr>
-              <tr class="table-danger">
-                <td>
-                  <span class="badge badge-pill badge-danger">DANGER</span>
-                </td>
-                <td>Stanley Hummer</td>
-                <td>mr_winner_2999@gmail.cb</td>
-                <td>Manchester</td>
-                <td align="right">57</td>
-                <td align="middle">
-                  <i class="fa fa-exclamation-triangle icon-right input-icon error-icon"></i>
-                </td>
-              </tr>
-              <tr class="table-success">
-                <td>
-                  <span class="badge badge-pill badge-primary">SUCCESS</span>
-                </td>
-                <td>Lendley Wintz</td>
-                <td>9938198146@mailster.io</td>
-                <td>Wien</td>
-                <td align="right">113</td>
-                <td align="middle" class="valid">
-                  <i class="fa fa-check success-icon icon-right input-icon"></i>
-                </td>
-              </tr>
-              <tr class="table-warning">
-                <td>
-                  <span class="badge badge-pill badge-warning">WARNING</span>
-                </td>
-                <td>Barbara Noz</td>
-                <td>barbaranoz@mailster.io</td>
-                <td>Brussels</td>
-                <td align="right">68</td>
-                <td align="middle"></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td>Matthew McCormick</td>
-                <td>matthew30@mail.ol</td>
-                <td>Vancouver</td>
-                <td align="right">93</td>
-                <td align="middle"></td>
-              </tr>
-              <tr class="table-info">
-                <td>
-                  <span class="badge badge-pill badge-info">INFO</span>
-                </td>
-                <td>Nancy Bo</td>
-                <td>nancy@boonweb.com</td>
-                <td>Washington</td>
-                <td align="right">280</td>
-                <td align="middle"></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
+      <div class="col-xs-12 col-md-12">
+        <vuestic-widget :headerText="$t('tables.deals')">
+          <deals-table
+            api-url="https://vuetable.ratiw.net/api/users"
+            :fields="fields"
+            :sort-order="sortOrder"
+            :append-params="moreParams"
+          ></deals-table>
         </vuestic-widget>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <vuestic-widget :headerText="$t('tables.advanced')">
-          <vuestic-data-table
-            :apiUrl="apiUrl"
-            :tableFields="tableFields"
-            :itemsPerPage="itemsPerPage"
-            :defaultPerPage="defaultTablePerPage"
-            :sortFunctions="sortFunctions"
-            :apiMode="apiMode"
-            :paginationPath="paginationPath"
-            :queryParams="queryParams"
-          >
-            <spring-spinner
-              slot="loading"
-              :animation-duration="2500"
-              :size="70"
-              color="#4ae387"
-            />
-          </vuestic-data-table>
-        </vuestic-widget>
-      </div>
-    </div>
-
   </div>
 </template>
 
+
 <script>
-import Vue from 'vue'
-import BadgeColumn from './BadgeColumn.vue'
-import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
-import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
-import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
-import { SpringSpinner } from 'epic-spinners'
+  import DealsTable from './DealsTable'
+  import FieldsDef from './FieldDefs'
+  import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget";
 
-Vue.component('badge-column', BadgeColumn)
 
-export default {
-  name: 'Sinf-salesorders',
-  components: {
-    SpringSpinner
-  },
-  data () {
-    return {
-      apiUrl: 'https://vuetable.ratiw.net/api/users',
-      apiMode: true,
-      tableFields: FieldsDef.tableFields,
-      itemsPerPage: ItemsPerPageDef.itemsPerPage,
-      sortFunctions: FieldsDef.sortFunctions,
-      paginationPath: '',
-      defaultTablePerPage: 6,
-      queryParams: QueryParams
+  export default {
+    name: "Sinf-salesorder",
+    components: {
+      VuesticWidget,
+      DealsTable,
+    },
+    data () {
+      return {
+        apiUrl: 'https://vuetable.ratiw.net/api/users',
+        fields: FieldsDef,
+        sortOrder: [
+          {
+            field: 'name',
+            sortField: 'name',
+            direction: 'asc'
+          }
+        ],
+        moreParams: {}
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-
   .color-icon-label-table {
     td:first-child {
       width: 1rem;

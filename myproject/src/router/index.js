@@ -20,6 +20,17 @@ const EmptyParentComponent = {
   template: '<router-view></router-view>',
 }
 
+const deal = {
+  props: {
+    name: String,
+    stage: String,
+    closeDate: Date,
+    owner: String,
+    amount: Number,
+    associate: String
+  }
+}
+
 export default new Router({
   routes: [
     ...demoRoutes,
@@ -153,6 +164,15 @@ export default new Router({
           meta: {
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
           }
+        },
+        {
+          name: 'saleDescription',
+          path: 'saleDescription',
+          component: lazyLoading('sinf-salesorders/Sinf-saleDescription'),
+          meta: {
+            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
+          },
+          props: true
         },
         {
           name: 'salesrep',

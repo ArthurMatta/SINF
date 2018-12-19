@@ -36,7 +36,8 @@
   },
   "collapse": {
     "accordion": "Accordion",
-    "buttons": "Buttons"
+    "buttons": "Buttons",
+    "about": "About this deal"
   },
   "dashboard": {
     "dataVisualization": "Data Visualization",
@@ -191,6 +192,7 @@
     "modals": "Modals",
     "notifications": "Notifications",
     "progressBars": "Progress Bars",
+    "salesOrder": "Sales Orders",
     "signUp": "Sign up",
     "statistics": "Statistics",
     "tables": "Tables",
@@ -261,6 +263,7 @@
     "startedTopic": "{name} started a new topic"
   },
   "timelines": {
+    "pipeline": "Pipeline",
     "horizontalSimple": "Horizontal Simple",
     "horizontalCards": "Horizontal Cards",
     "verticalSimple": "Vertical Simple",
@@ -286,16 +289,30 @@
   },
   "tables": {
     "basic": "Basic Table",
+    "deals": "Deals",
     "styled": "Colors, Icons, Labels",
     "advanced": "Search & Pagination",
     "headings": {
       "city": "City",
       "email": "Email",
       "name": "Name",
-      "score": "Score"
+      "score": "Score",
+      "dealname": "Deal Name",
+      "dealstage": "Deal Stage",
+      "closedate": "Close Date",
+      "dealowner": "Deal Owner",
+      "amount": "Amount",
+      "associated": "Associated With"
     },
     "dataTable": {
-      "noDataAvailable": "No Data Available"
+      "noDataAvailable": "No Data Available",
+      "appointmentScheduled": "Appointment Scheduled",
+      "qualifiedToBuy": "Qualified to Buy",
+      "presentationScheduled": "Presentation Scheduled",
+      "decisionMakerBroughtIn": "Decision Maker Brought-In",
+      "contractSent": "Contract Sent",
+      "closedWon": "Closed Won",
+      "closedLost": "Closed Lost"
     }
   },
   "user": {
