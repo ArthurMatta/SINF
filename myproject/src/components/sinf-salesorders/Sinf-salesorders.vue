@@ -28,7 +28,7 @@
   import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget";
 
   export default {
-    name: "Sinf-salesorder",
+    name: "Sinf-salesorders",
     components: {
       VuesticWidget,
       DealsTable,
