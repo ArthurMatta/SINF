@@ -1,5 +1,5 @@
 <template>
-	<div class="sinf-dashboard">
+  <div class="sinf-dashboard">
 
 
 		<vuestic-widget class="no-padding no-v-padding">
@@ -40,7 +40,7 @@
 		</div>
 	</vuestic-tabs>
 </vuestic-widget>
-
+  <h1>pila {{info}}</h1>
 </div>
 </template>
 
@@ -55,7 +55,7 @@
 	import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
 	import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
 	import { SpringSpinner } from 'epic-spinners'
-
+    import axios from 'axios'
 	export default {
 		name: 'Sinf-Dashboard',
 		components: {
@@ -68,34 +68,53 @@
 			SpringSpinner
 		},
 
-		data () {
-			return {
-				apiUrl: 'https://vuetable.ratiw.net/api/users',
-				apiMode: true,
-				tableFields: FieldsDef.tableFields,
-				itemsPerPage: ItemsPerPageDef.itemsPerPage,
-				sortFunctions: FieldsDef.sortFunctions,
-				paginationPath: '',
-				defaultTablePerPage: 6,
-				queryParams: QueryParams
-			}
-		},
+  data () {
+    return {
+      apiUrl: 'https://vuetable.ratiw.net/api/users',
+      apiMode: true,
+      tableFields: FieldsDef.tableFields,
+      itemsPerPage: ItemsPerPageDef.itemsPerPage,
+      sortFunctions: FieldsDef.sortFunctions,
+      paginationPath: '',
+      defaultTablePerPage: 6,
+      queryParams: QueryParams,
+      info : null
+    }
+  },
+  beforeMount(){
+    const qs = require('qs');
+    const data = {
+    'username': 'FEUP' ,
+    'password' : 'qualquer1' ,
+    'instance' : 'DEFAULT' ,
+    'grant_type' : 'password' ,
+    'line' : 'professional'};
+    var url = "http://localhost:2018/WebApi/token" ;
 
-		methods: {
-			launchEpicmaxToast () {
-				this.showToast(`Let's work together!`, {
-					icon: 'fa-star-o',
-					position: 'top-right',
-					duration: Infinity,
-					action: {
-						text: 'Hire us',
-						href: 'http://epicmax.co/#/contact',
-						class: 'vuestic-toasted-link'
-					}
-				})
-			}
-		}
-	}
+    const options = {
+      method: 'POST',
+
+      data: qs.stringify(data),
+    };
+    const headers = { 'content-type': 'application/x-www-form-urlencoded' }
+    axios.post(url, qs.stringify(data),headers).then(response => (this.info = response.data['access_token']));
+
+  },
+  methods: {
+    launchEpicmaxToast () {
+      this.showToast(`Let's work together!`, {
+        icon: 'fa-star-o',
+        position: 'top-right',
+        duration: Infinity,
+        action: {
+          text: 'Hire us',
+          href: 'http://epicmax.co/#/contact',
+          class: 'vuestic-toasted-link'
+        }
+      })
+    }
+  }
+}
 
 </script>
 <style lang="scss" scoped>
