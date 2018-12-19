@@ -55,6 +55,21 @@ export default {
       ]
     },
     {
+      name: 'leads',
+      displayName: 'menu.leads',
+      disabled: true,
+      children: [
+        {
+          name: 'overview',
+          displayName: 'menu.overview'
+        },
+        {
+          name: 'new Lead',
+          displayName: 'menu.newLead'
+        }
+      ]
+    },
+    {
       name: 'tables',
       displayName: 'menu.tables'
     },

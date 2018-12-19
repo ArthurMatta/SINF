@@ -1,20 +1,31 @@
 <template>
   <vuestic-sidebar :hidden="isOpen">
     <template slot="menu">
+      <sidebar-link-group>
+        <span slot="title">
+          <span
+            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-forms"></span>
+          <span>{{ $t('menu.leads') }}</span>
+        </span>
+        <sidebar-link
+          :to="{ name: 'overview' }">
+          <span slot="title">
+            <span>{{ $t('overview') }}</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'newLead' }">
+          <span slot="title">
+            <span>{{ $t('new Lead') }}</span>
+          </span>
+        </sidebar-link>
+      </sidebar-link-group>
       <sidebar-link
         :to="{ name: 'dashboard' }">
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-dashboard"></span>
           <span>{{ $t('menu.dashboard') }}</span>
-        </span>
-      </sidebar-link>
-      <sidebar-link
-        :to="{ name: 'salesorders' }">
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-components"></span>
-          <span>{{ $t('menu.leads') }}</span>
         </span>
       </sidebar-link>
       <sidebar-link

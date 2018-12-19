@@ -36,7 +36,7 @@ export default new Router({
     ...demoRoutes,
     {
       path: '*',
-      redirect: { name: 'dashboard' },
+      redirect: {name: 'dashboard'},
     },
     {
       path: '/auth',
@@ -54,7 +54,7 @@ export default new Router({
         },
         {
           path: '',
-          redirect: { name: 'login' },
+          redirect: {name: 'login'},
         },
       ],
     },
@@ -158,21 +158,37 @@ export default new Router({
           }
         },
         {
-          name: 'salesorders',
-          path: 'salesorders',
-          component: lazyLoading('sinf-salesorders/Sinf-salesorders'),
-          meta: {
-            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
-          }
-        },
-        {
-          name: 'saleDescription',
-          path: 'saleDescription',
-          component: lazyLoading('sinf-salesorders/Sinf-saleDescription'),
-          meta: {
-            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
-          },
-          props: true
+          name: 'leads',
+          path: 'leads',
+          component: EmptyParentComponent,
+          children: [
+            {
+              name: 'overview',
+              path: 'overview',
+              component: lazyLoading('sinf-salesorders/Sinf-salesorders'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+              }
+            },
+            {
+              name: 'saleDescription',
+              path: 'saleDescription',
+              component: lazyLoading('sinf-salesorders/Sinf-saleDescription'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
+              },
+              props: true
+            },
+            {
+              name: 'newLead',
+              path: 'newLead',
+              component: lazyLoading('sinf-salesorders/newLead/newLead'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
+              },
+              props: true
+            }
+          ],
         },
         {
           name: 'salesrep',
