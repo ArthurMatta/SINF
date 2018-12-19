@@ -61,7 +61,7 @@ export default {
       children: [
         {
           name: 'overview',
-          displayName: 'menu.overview'
+          displayName: 'Overview'
         },
         {
           name: 'new Lead',
