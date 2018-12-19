@@ -7,55 +7,44 @@
             <div class="col-md-12">
               <vuestic-widget :headerText="$t('tables.advanced')">
                 <vuestic-data-table
-                :apiUrl="apiUrl"
-                :tableFields="tableFields"
-                :itemsPerPage="itemsPerPage"
-                :defaultPerPage="defaultTablePerPage"
-                :sortFunctions="sortFunctions"
-                :apiMode="apiMode"
-                :paginationPath="paginationPath"
-                :queryParams="queryParams">
-                <spring-spinner
-                slot="loading"
-                :animation-duration="2500"
-                :size="70"
-                color="#4ae387"/>
-              </vuestic-data-table>
-            </vuestic-widget>
+                  :apiUrl="apiUrl"
+                  :tableFields="tableFields"
+                  :itemsPerPage="itemsPerPage"
+                  :defaultPerPage="defaultTablePerPage"
+                  :sortFunctions="sortFunctions"
+                  :apiMode="apiMode"
+                  :paginationPath="paginationPath"
+                  :queryParams="queryParams">
+                  <spring-spinner
+                    slot="loading"
+                    :animation-duration="2500"
+                    :size="70"
+                    color="#4ae387"/>
+                </vuestic-data-table>
+              </vuestic-widget>
+            </div>
           </div>
         </div>
-      </div>
-      <div :slot="'Location' | translate" class="maps-tab">
-        <leaflet-map></leaflet-map>
-      </div>
-      <div :slot="'Leads' ">
-        <div class="row">
-          <div class="col-md-12">
-            <vuestic-widget :headerText="$t('tables.advanced')">
-              <vuestic-data-table
-              :apiUrl="apiUrl"
-              :tableFields="tableFields"
-              :itemsPerPage="itemsPerPage"
-              :defaultPerPage="defaultTablePerPage"
-              :sortFunctions="sortFunctions"
-              :apiMode="apiMode"
-              :paginationPath="paginationPath"
-              :queryParams="queryParams">
-              <spring-spinner
-              slot="loading"
-              :animation-duration="2500"
-              :size="70"
-              color="#4ae387"/>
-            </vuestic-data-table>
-          </vuestic-widget>
+        <div :slot="'Location' | translate" class="maps-tab">
+          <leaflet-map></leaflet-map>
         </div>
-      </div>
-    </div>
-  </vuestic-tabs>
-</vuestic-widget>
-</div>
-</div>
-</div>
+        <div :slot="'Leads' ">
+          <deals-table
+            api-url="https://vuetable.ratiw.net/api/users"
+            :fields="fields"
+            :sort-order="sortOrder"
+            :append-params="moreParams"
+          >
+            <template slot="name" slot-scope="props">
+              <router-link class="link" :to="{name: 'saleDescription', params: { deal: {name: props.rowData.name } } }">
+                {{ props.rowData.name }}
+              </router-link>
+            </template>
+          </deals-table>
+        </div>
+      </vuestic-tabs>
+    </vuestic-widget>
+  </div>
 </template>
 
 <script>
@@ -67,6 +56,8 @@
   import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
   import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
   import { SpringSpinner } from 'epic-spinners';
+  import DealsTable from '../sinf-salesorders/DealsTable'
+  import SinfFieldDefs from '../sinf-salesorders/SinfFieldDefs'
 
   export default {
     name: 'Sinf-clients',
@@ -74,18 +65,29 @@
       LeafletMap,
       SetupProfileTab,
       OverviewTab,
-      SpringSpinner
+      SpringSpinner,
+      DealsTable,
+      SinfFieldDefs
     },
     data () {
       return {
         apiUrl: 'https://vuetable.ratiw.net/api/users',
+        fields: SinfFieldDefs,
         apiMode: true,
         tableFields: FieldsDef.tableFields,
         itemsPerPage: ItemsPerPageDef.itemsPerPage,
         sortFunctions: FieldsDef.sortFunctions,
         paginationPath: '',
         defaultTablePerPage: 6,
-        queryParams: QueryParams
+        queryParams: QueryParams,
+        sortOrder: [
+          {
+            field: '__slot:name',
+            sortField: 'name',
+            direction: 'asc'
+          }
+        ],
+        moreParams: {}
       }
     }  
   }

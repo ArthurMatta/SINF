@@ -13,12 +13,12 @@ export default {
       displayName: 'Clients'
     },
     {
-      name: 'leads',
-      displayName: 'menu.leads'
+      name: 'salesorders',
+      displayName: 'Leads'
     },
     {
-      name: 'representative',
-      displayName: 'menu.representative'
+      name: 'salesrep',
+      displayName: 'Representative'
     },
     {
       name: 'statistics',
