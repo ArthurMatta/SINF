@@ -39,7 +39,7 @@
         fields: FieldsDef,
         sortOrder: [
           {
-            field: 'name',
+            field: '__slot:name',
             sortField: 'name',
             direction: 'asc'
           }

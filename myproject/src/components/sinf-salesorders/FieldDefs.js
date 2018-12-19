@@ -3,7 +3,7 @@ export default [
     name: '__slot:name',
     title: 'Name',
     titleClass: 'text-center',
-    sortField: '__slot:name'
+    sortField: 'name'
   },
   {
     name: 'email',
