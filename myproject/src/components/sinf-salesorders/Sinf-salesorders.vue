@@ -24,7 +24,7 @@
 
 <script>
   import DealsTable from './DealsTable'
-  import FieldsDef from './FieldDefs'
+  import FieldsDef from './SinfFieldDefs'
   import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget";
 
   export default {
