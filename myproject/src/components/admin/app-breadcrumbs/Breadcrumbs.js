@@ -9,6 +9,18 @@ export default {
       displayName: 'menu.dashboard'
     },
     {
+      name: 'clients',
+      displayName: 'Clients'
+    },
+    {
+      name: 'leads',
+      displayName: 'menu.leads'
+    },
+    {
+      name: 'representative',
+      displayName: 'menu.representative'
+    },
+    {
       name: 'statistics',
       displayName: 'menu.statistics',
       disabled: true,
