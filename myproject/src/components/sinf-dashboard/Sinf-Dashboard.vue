@@ -54,7 +54,7 @@
 	import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
 	import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
 	import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
-	import { SpringSpinner } from 'epic-spinners'
+	import { SpringSpinner } from 'epic-spinners';
 
 	export default {
 		name: 'Sinf-Dashboard',
