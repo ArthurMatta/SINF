@@ -1,14 +1,9 @@
 export default [
   {
-    name: '__checkbox',
-    title: '#',
+    name: '__slot:name',
+    title: 'Name',
     titleClass: 'text-center',
-    dataClass: 'text-center'
-  },
-  {
-    name: 'name',
-    sortField: 'name',
-    callback: 'anchorName'
+    sortField: '__slot:name'
   },
   {
     name: 'email',

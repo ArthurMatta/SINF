@@ -1,26 +1,3 @@
-<template>
-  <div class="ui">
-    <filter-bar></filter-bar>
-    <vuetable :css="css.table"></vuetable>
-    <div class="row mb-2 mt-4">
-      <div class="col-md-12 d-flex justify-content-center">
-        <vuetable-pagination-info></vuetable-pagination-info>
-      </div>
-    </div>
-    <div class="row mb-2 mt-4">
-      <div class="col-md-12 d-flex justify-content-center">
-        <vuetable-pagination></vuetable-pagination>
-      </div>
-    </div>
-  </div>
-</template>
-
-<!--
-ref="pagination"
-:css="css.pagination"
-@vuetable-pagination:change-page="onChangePage"
--->
-
 <script>
   import Vue from 'vue'
   import VueEvents from 'vue-events'
@@ -51,7 +28,7 @@ ref="pagination"
         [
           h('filter-bar'),
           this.renderVuetable(h),
-          this.renderPagination(h)
+          this.renderPaginationDiv(h)
         ]
       )
     },
@@ -98,7 +75,8 @@ ref="pagination"
               perPage: 10,
               multiSort: true,
               sortOrder: this.sortOrder,
-              appendParams: this.appendParams
+              appendParams: this.appendParams,
+              css: this.css.table
             },
             on: {
               'vuetable:pagination-data': this.onPaginationData,
@@ -107,11 +85,50 @@ ref="pagination"
           },
         )
       },
+      renderPaginationDiv (h) {
+        return h(
+          'div',
+          {
+            class: {'row': true, 'mb-2': true, 'mt-4': true}
+          },
+          [
+            this.renderPaginationInfo(h),
+            this.renderPagination(h)
+          ]
+        )
+      },
+      renderPaginationInfo (h) {
+        return h(
+          'div',
+          {
+            class: {'col-md-12': true, 'd-flex': true, 'justify-content-center': true}
+          },
+          [
+            h('vuetable-pagination-info', { ref: 'paginationInfo' })
+          ]
+        )
+      },
+      renderPagination (h) {
+        return h(
+          'div',
+          {
+            class: {'col-md-12': true, 'd-flex': true, 'justify-content-center': true}
+          },
+          [
+            h('vuetable-pagination', {
+              ref: 'pagination',
+              props: {
+                css: this.css.pagination
+              },
+              on: {
+                'vuetable-pagination:change-page': this.onChangePage
+              }
+            })
+          ]
+        )
+      },
       allcap (value) {
         return value.toUpperCase()
-      },
-      anchorName (value) {
-          return value
       },
       genderLabel (value) {
         return value === 'M'
@@ -127,14 +144,14 @@ ref="pagination"
           : moment(value, 'YYYY-MM-DD').format(fmt)
       },
       onPaginationData (paginationData) {
-        this.$refs.pagination.setPaginationData(paginationData)
+        this.$refs.pagination.setPaginationData(paginationData);
         this.$refs.paginationInfo.setPaginationData(paginationData)
       },
       onChangePage (page) {
         this.$refs.vuetable.changePage(page)
       },
       onFilterSet (filterText) {
-        this.appendParams.filter = filterText
+        this.appendParams.filter = filterText;
         Vue.nextTick( () => this.$refs.vuetable.refresh() )
       }
     }
