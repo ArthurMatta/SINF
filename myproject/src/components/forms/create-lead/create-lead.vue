@@ -1,9 +1,9 @@
 <template>
-	<div class="sinf-opportunities">
+	<div class="create-lead">
 		<div class="form-elements">
 			<div class="row">
 				<div class="col-md-8">
-					<vuestic-widget :headerText="'Add Client' | translate">
+					<vuestic-widget :headerText="'Create Lead' | translate">
 						<form>
 
 							<div class="row justify-content-center">
@@ -25,7 +25,7 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input id="simple-input" required/>
-													<label class="control-label" for="simple-input">{{'Name'
+													<label class="control-label" for="simple-input">{{'Description'
 														| translate}}</label><i class="bar"></i>
 													</div>
 												</div>
@@ -39,7 +39,7 @@
 												<div class="form-group">
 													<div class="input-group">
 														<input id="simple-input" required/>
-														<label class="control-label" for="simple-input">{{'Adress'
+														<label class="control-label" for="simple-input">{{'Summary'
 															| translate}}</label><i class="bar"></i>
 														</div>
 													</div>
@@ -49,16 +49,15 @@
 										<div class="row justify-content-center">
 											<div class="col-md-4">
 												<fieldset>
-													<div class="form-group">
-														<div class="input-group">
-															<input id="simple-input" required/>
-															<label class="control-label" for="simple-input">{{'Phone'
-																| translate}}</label><i class="bar"></i>
-															</div>
-														</div>
-													</fieldset>
+													<vuestic-simple-select
+													:label="'Select Client' | translate"
+													v-model="simpleSelectModel"
+													option-key="description"
+													v-bind:options="simpleOptions"
+													/>
+												</fieldset>
 												</div>
-												</div>
+											</div>
 
 										<div class="row justify-content-center">
 											<div class="col-md-4">
@@ -92,13 +91,9 @@
 				</template>
 
 				<script>
-					import GoogleMapsPage from '../maps/google-maps/GoogleMapsPage'
-					import GoogleMap from '../maps/google-maps/GoogleMap'
 
 					export default {
 						components:{
-							GoogleMapsPage,
-							GoogleMap
 						},
 						data () {
 							return {

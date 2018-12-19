@@ -2,7 +2,7 @@
 	<div class="sinf-dashboard">
 		<vuestic-widget class="no-padding no-v-padding">
 			<vuestic-tabs class="tabs"
-			:names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
+			:names="[$t('Task List'), $t('Agenda'), $t('Route')]"
 			ref="tabs">
 			<div :slot="$t('Task List')">
 				<div class="row">
@@ -28,17 +28,12 @@
 			</div>
 		</div>
 		<div :slot="$t('Agenda')">
-			<users-members-tab></users-members-tab>
-		</div>
-		<div :slot="$t('Statistics')">
-			<data-visualisation-tab></data-visualisation-tab>
 		</div>
 		<div :slot="'Route' | translate" class="maps-tab">
 			<leaflet-map></leaflet-map>
 		</div>
 	</vuestic-tabs>
 </vuestic-widget>
-  <h1>pila {{info}}</h1>
 </div>
 </template>
 
