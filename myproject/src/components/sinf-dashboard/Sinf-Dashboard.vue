@@ -1,49 +1,85 @@
 <template>
   <div class="sinf-dashboard">
 
-    <dashboard-info-widgets></dashboard-info-widgets>
 
     <vuestic-widget class="no-padding no-v-padding">
-      <vuestic-tabs
-        :names="[$t('sinf-dashboard.dataVisualization'), $t('sinf-dashboard.usersAndMembers'), $t('sinf-dashboard.setupProfile'), $t('sinf-dashboard.features')]"
+      <vuestic-tabs class="tabs"
+        :names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
         ref="tabs">
-        <div :slot="$t('sinf-dashboard.dataVisualization')">
-          <data-visualisation-tab></data-visualisation-tab>
+        <div :slot="$t('Task List')">
+         <div class="row">
+      <div class="col-md-12">
+        <vuestic-widget :headerText="$t('tables.advanced')">
+          <vuestic-data-table
+            :apiUrl="apiUrl"
+            :tableFields="tableFields"
+            :itemsPerPage="itemsPerPage"
+            :defaultPerPage="defaultTablePerPage"
+            :sortFunctions="sortFunctions"
+            :apiMode="apiMode"
+            :paginationPath="paginationPath"
+            :queryParams="queryParams"
+          >
+            <spring-spinner
+              slot="loading"
+              :animation-duration="2500"
+              :size="70"
+              color="#4ae387"
+            />
+          </vuestic-data-table>
+        </vuestic-widget>
+      </div>
+    </div>
         </div>
-        <div :slot="$t('sinf-dashboard.usersAndMembers')">
+        <div :slot="$t('Agenda')">
           <users-members-tab></users-members-tab>
         </div>
-        <div :slot="$t('sinf-dashboard.setupProfile')">
-          <setup-profile-tab></setup-profile-tab>
+        <div :slot="$t('Statistics')">
+          <data-visualisation-tab></data-visualisation-tab>
         </div>
-        <div :slot="$t('sinf-dashboard.features')">
-          <features-tab></features-tab>
+        <div :slot="'Route' | translate" class="maps-tab">
+          <leaflet-map></leaflet-map>
         </div>
       </vuestic-tabs>
     </vuestic-widget>
-
-    <dashboard-bottom-widgets></dashboard-bottom-widgets>
 
   </div>
 </template>
 
 <script>
-import DashboardInfoWidgets from './DashboardInfoWidgets'
 import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
 import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
 import FeaturesTab from './features-tab/FeaturesTab.vue'
 import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
 import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
+import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
+import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
+import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
+import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
+import { SpringSpinner } from 'epic-spinners'
 
 export default {
   name: 'Sinf-Dashboard',
   components: {
     DataVisualisationTab,
-    DashboardInfoWidgets,
     UsersMembersTab,
     SetupProfileTab,
     FeaturesTab,
-    DashboardBottomWidgets
+    DashboardBottomWidgets,
+    LeafletMap
+  },
+
+  data () {
+    return {
+      apiUrl: 'https://vuetable.ratiw.net/api/users',
+      apiMode: true,
+      tableFields: FieldsDef.tableFields,
+      itemsPerPage: ItemsPerPageDef.itemsPerPage,
+      sortFunctions: FieldsDef.sortFunctions,
+      paginationPath: '',
+      defaultTablePerPage: 6,
+      queryParams: QueryParams
+    }
   },
 
   methods: {
@@ -64,4 +100,21 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+.tabs {
+    .overview-tab {
+      .explore-row {
+        display: none !important;
+      }
+    }
+
+    .maps-tab {
+      height: 500px;
+    }
+  }
+
+  .color-icon-label-table {
+    td:first-child {
+      width: 1rem;
+    }
+  }
 </style>
