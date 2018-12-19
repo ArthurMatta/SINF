@@ -1,5 +1,5 @@
 <template>
-  <div class="extra">
+  <div class="representative">
     <div class="row">
       <div class="col-md-4 d-flex">
           <vuestic-widget :headerText="$t('My Profile')" class="profile-card-widget">
