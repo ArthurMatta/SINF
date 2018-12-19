@@ -2,11 +2,11 @@
 	<div class="sinf-opportunities">
 		<div class="form-elements">
 			<div class="row">
-				<div class="col-md-12">
-					<vuestic-widget :headerText="'forms.inputs.title' | translate">
+				<div class="col-md-8">
+					<vuestic-widget :headerText="'Add Client' | translate">
 						<form>
 
-							<div class="row">
+							<div class="row justify-content-center">
 								<div class="col-md-4">
 									<fieldset>
 										<div class="form-group">
@@ -18,6 +18,8 @@
 											</div>
 										</fieldset>
 									</div>
+									</div>
+							<div class="row justify-content-center">
 									<div class="col-md-4">
 										<fieldset>
 											<div class="form-group">
@@ -29,6 +31,9 @@
 												</div>
 											</fieldset>
 										</div>
+								</div>
+
+							<div class="row justify-content-center">
 										<div class="col-md-4">
 											<fieldset>
 												<div class="form-group">
@@ -41,7 +46,7 @@
 												</fieldset>
 											</div>
 										</div>
-										<div class="row">
+										<div class="row justify-content-center">
 											<div class="col-md-4">
 												<fieldset>
 													<div class="form-group">
@@ -53,7 +58,9 @@
 														</div>
 													</fieldset>
 												</div>
+												</div>
 
+										<div class="row justify-content-center">
 											<div class="col-md-4">
 												<fieldset>
 													<vuestic-simple-select
@@ -66,10 +73,15 @@
 												</div>
 											</div>
 
+										<div class="row justify-content-center">
+
+											<div class="col-md-4">
 											<div class="d-flex justify-content-center">
 												<button class="btn btn-primary">
-													{{'buttons.button' | translate}}
+													{{'Submit' | translate}}
 												</button>
+												</div>
+											</div>
 											</div>
 										</form>
 									</vuestic-widget>
