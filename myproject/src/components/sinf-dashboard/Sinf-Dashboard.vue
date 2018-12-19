@@ -1,120 +1,119 @@
 <template>
-  <div class="sinf-dashboard">
+	<div class="sinf-dashboard">
 
 
-    <vuestic-widget class="no-padding no-v-padding">
-      <vuestic-tabs class="tabs"
-        :names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
-        ref="tabs">
-        <div :slot="$t('Task List')">
-         <div class="row">
-      <div class="col-md-12">
-        <vuestic-widget :headerText="$t('tables.advanced')">
-          <vuestic-data-table
-            :apiUrl="apiUrl"
-            :tableFields="tableFields"
-            :itemsPerPage="itemsPerPage"
-            :defaultPerPage="defaultTablePerPage"
-            :sortFunctions="sortFunctions"
-            :apiMode="apiMode"
-            :paginationPath="paginationPath"
-            :queryParams="queryParams"
-          >
-            <spring-spinner
-              slot="loading"
-              :animation-duration="2500"
-              :size="70"
-              color="#4ae387"
-            />
-          </vuestic-data-table>
-        </vuestic-widget>
-      </div>
-    </div>
-        </div>
-        <div :slot="$t('Agenda')">
-          <users-members-tab></users-members-tab>
-        </div>
-        <div :slot="$t('Statistics')">
-          <data-visualisation-tab></data-visualisation-tab>
-        </div>
-        <div :slot="'Route' | translate" class="maps-tab">
-          <leaflet-map></leaflet-map>
-        </div>
-      </vuestic-tabs>
-    </vuestic-widget>
+		<vuestic-widget class="no-padding no-v-padding">
+			<vuestic-tabs class="tabs"
+			:names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
+			ref="tabs">
+			<div :slot="$t('Task List')">
+				<div class="row">
+					<div class="col-md-12">
+						<vuestic-widget :headerText="$t('tables.advanced')">
+							<vuestic-data-table
+							:apiUrl="apiUrl"
+							:tableFields="tableFields"
+							:itemsPerPage="itemsPerPage"
+							:defaultPerPage="defaultTablePerPage"
+							:sortFunctions="sortFunctions"
+							:apiMode="apiMode"
+							:paginationPath="paginationPath"
+							:queryParams="queryParams">
+							<spring-spinner
+							slot="loading"
+							:animation-duration="2500"
+							:size="70"
+							color="#4ae387"/>
+						</vuestic-data-table>
+					</vuestic-widget>
+				</div>
+			</div>
+		</div>
+		<div :slot="$t('Agenda')">
+			<users-members-tab></users-members-tab>
+		</div>
+		<div :slot="$t('Statistics')">
+			<data-visualisation-tab></data-visualisation-tab>
+		</div>
+		<div :slot="'Route' | translate" class="maps-tab">
+			<leaflet-map></leaflet-map>
+		</div>
+	</vuestic-tabs>
+</vuestic-widget>
 
-  </div>
+</div>
 </template>
 
 <script>
-import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
-import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
-import FeaturesTab from './features-tab/FeaturesTab.vue'
-import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
-import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
-import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
-import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
-import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
-import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
-import { SpringSpinner } from 'epic-spinners'
+	import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
+	import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
+	import FeaturesTab from './features-tab/FeaturesTab.vue'
+	import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
+	import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
+	import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
+	import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
+	import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
+	import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
+	import { SpringSpinner } from 'epic-spinners'
 
-export default {
-  name: 'Sinf-Dashboard',
-  components: {
-    DataVisualisationTab,
-    UsersMembersTab,
-    SetupProfileTab,
-    FeaturesTab,
-    DashboardBottomWidgets,
-    LeafletMap
-  },
+	export default {
+		name: 'Sinf-Dashboard',
+		components: {
+			DataVisualisationTab,
+			UsersMembersTab,
+			SetupProfileTab,
+			FeaturesTab,
+			DashboardBottomWidgets,
+			LeafletMap,
+			SpringSpinner
+		},
 
-  data () {
-    return {
-      apiUrl: 'https://vuetable.ratiw.net/api/users',
-      apiMode: true,
-      tableFields: FieldsDef.tableFields,
-      itemsPerPage: ItemsPerPageDef.itemsPerPage,
-      sortFunctions: FieldsDef.sortFunctions,
-      paginationPath: '',
-      defaultTablePerPage: 6,
-      queryParams: QueryParams
-    }
-  },
+		data () {
+			return {
+				apiUrl: 'https://vuetable.ratiw.net/api/users',
+				apiMode: true,
+				tableFields: FieldsDef.tableFields,
+				itemsPerPage: ItemsPerPageDef.itemsPerPage,
+				sortFunctions: FieldsDef.sortFunctions,
+				paginationPath: '',
+				defaultTablePerPage: 6,
+				queryParams: QueryParams
+			}
+		},
 
-  methods: {
-    launchEpicmaxToast () {
-      this.showToast(`Let's work together!`, {
-        icon: 'fa-star-o',
-        position: 'top-right',
-        duration: Infinity,
-        action: {
-          text: 'Hire us',
-          href: 'http://epicmax.co/#/contact',
-          class: 'vuestic-toasted-link'
-        }
-      })
-    }
-  }
-}
+		methods: {
+			launchEpicmaxToast () {
+				this.showToast(`Let's work together!`, {
+					icon: 'fa-star-o',
+					position: 'top-right',
+					duration: Infinity,
+					action: {
+						text: 'Hire us',
+						href: 'http://epicmax.co/#/contact',
+						class: 'vuestic-toasted-link'
+					}
+				})
+			}
+		}
+	}
 
 </script>
 <style lang="scss" scoped>
-.tabs {
-    .overview-tab {
-      .explore-row {
-        display: none !important;
-      }
-    }
+	.tabs {
+		.overview-tab {
+			.explore-row {
+				display: none !important;
+			}
+		}
 
-    .maps-tab {
-      height: 500px;
-    }
-  }
+		.maps-tab {
+			height: 500px;
+		}
+	}
 
-  .color-icon-label-table {
-    td:first-child {
-      width: 1rem;
-    }
-  }
+	.color-icon-label-table {
+		td:first-child {
+			width: 1rem;
+		}
+	}
 </style>
