@@ -1,73 +1,70 @@
 <template>
-  <div class="sinf-dashboard">
-
-
-    <vuestic-widget class="no-padding no-v-padding">
-      <vuestic-tabs class="tabs"
-        :names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
-        ref="tabs">
-        <div :slot="$t('Task List')">
-         <div class="row">
-      <div class="col-md-12">
-        <vuestic-widget :headerText="$t('tables.advanced')">
-          <vuestic-data-table
-            :apiUrl="apiUrl"
-            :tableFields="tableFields"
-            :itemsPerPage="itemsPerPage"
-            :defaultPerPage="defaultTablePerPage"
-            :sortFunctions="sortFunctions"
-            :apiMode="apiMode"
-            :paginationPath="paginationPath"
-            :queryParams="queryParams"
-          >
-            <spring-spinner
-              slot="loading"
-              :animation-duration="2500"
-              :size="70"
-              color="#4ae387"
-            />
-          </vuestic-data-table>
-        </vuestic-widget>
-      </div>
-    </div>
-        </div>
-        <div :slot="$t('Agenda')">
-          <users-members-tab></users-members-tab>
-        </div>
-        <div :slot="$t('Statistics')">
-          <data-visualisation-tab></data-visualisation-tab>
-        </div>
-        <div :slot="'Route' | translate" class="maps-tab">
-          <leaflet-map></leaflet-map>
-        </div>
-      </vuestic-tabs>
-    </vuestic-widget>
-
-  </div>
+	<div class="sinf-dashboard">
+		<vuestic-widget class="no-padding no-v-padding">
+			<vuestic-tabs class="tabs"
+			:names="[$t('Task List'), $t('Agenda'), $t('Statistics'), $t('Route')]"
+			ref="tabs">
+			<div :slot="$t('Task List')">
+				<div class="row">
+					<div class="col-md-12">
+						<vuestic-widget :headerText="$t('tables.advanced')">
+							<vuestic-data-table
+							:apiUrl="apiUrl"
+							:tableFields="tableFields"
+							:itemsPerPage="itemsPerPage"
+							:defaultPerPage="defaultTablePerPage"
+							:sortFunctions="sortFunctions"
+							:apiMode="apiMode"
+							:paginationPath="paginationPath"
+							:queryParams="queryParams">
+							<spring-spinner
+							slot="loading"
+							:animation-duration="2500"
+							:size="70"
+							color="#4ae387"/>
+						</vuestic-data-table>
+					</vuestic-widget>
+				</div>
+			</div>
+		</div>
+		<div :slot="$t('Agenda')">
+			<users-members-tab></users-members-tab>
+		</div>
+		<div :slot="$t('Statistics')">
+			<data-visualisation-tab></data-visualisation-tab>
+		</div>
+		<div :slot="'Route' | translate" class="maps-tab">
+			<leaflet-map></leaflet-map>
+		</div>
+	</vuestic-tabs>
+</vuestic-widget>
+  <h1>pila {{info}}</h1>
+</div>
 </template>
 
 <script>
-import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
-import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
-import FeaturesTab from './features-tab/FeaturesTab.vue'
-import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
-import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
-import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
-import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
-import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
-import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
-import { SpringSpinner } from 'epic-spinners'
-
-export default {
-  name: 'Sinf-Dashboard',
-  components: {
-    DataVisualisationTab,
-    UsersMembersTab,
-    SetupProfileTab,
-    FeaturesTab,
-    DashboardBottomWidgets,
-    LeafletMap
-  },
+	import UsersMembersTab from './users-and-members-tab/UsersMembersTab.vue'
+	import SetupProfileTab from './setup-profile-tab/SetupProfileTab.vue'
+	import FeaturesTab from './features-tab/FeaturesTab.vue'
+	import DataVisualisationTab from './data-visualisation-tab/DataVisualisation.vue'
+	import DashboardBottomWidgets from './DashboardBottomWidgets.vue'
+	import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
+	import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
+	import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
+	import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
+	import { SpringSpinner } from 'epic-spinners'
+    import axios from 'axios'
+	export default {
+		name: 'Sinf-Dashboard',
+		components: {
+			DataVisualisationTab,
+			UsersMembersTab,
+			SetupProfileTab,
+			FeaturesTab,
+			DashboardBottomWidgets,
+			LeafletMap,
+			SpringSpinner
+		},
 
   data () {
     return {
@@ -78,10 +75,29 @@ export default {
       sortFunctions: FieldsDef.sortFunctions,
       paginationPath: '',
       defaultTablePerPage: 6,
-      queryParams: QueryParams
+      queryParams: QueryParams,
+      info : null
     }
   },
+  beforeMount(){
+    const qs = require('qs');
+    const data = {
+    'username': 'FEUP' ,
+    'password' : 'qualquer1' ,
+    'instance' : 'DEFAULT' ,
+    'grant_type' : 'password' ,
+    'line' : 'professional'};
+    var url = "http://localhost:2018/WebApi/token" ;
 
+    const options = {
+      method: 'POST',
+
+      data: qs.stringify(data),
+    };
+    const headers = { 'content-type': 'application/x-www-form-urlencoded' }
+    axios.post(url, qs.stringify(data),headers).then(response => (this.info = response.data['access_token']));
+
+  },
   methods: {
     launchEpicmaxToast () {
       this.showToast(`Let's work together!`, {
@@ -100,21 +116,21 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-.tabs {
-    .overview-tab {
-      .explore-row {
-        display: none !important;
-      }
-    }
+	.tabs {
+		.overview-tab {
+			.explore-row {
+				display: none !important;
+			}
+		}
 
-    .maps-tab {
-      height: 500px;
-    }
-  }
+		.maps-tab {
+			height: 500px;
+		}
+	}
 
-  .color-icon-label-table {
-    td:first-child {
-      width: 1rem;
-    }
-  }
+	.color-icon-label-table {
+		td:first-child {
+			width: 1rem;
+		}
+	}
 </style>

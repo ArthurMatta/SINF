@@ -183,9 +183,9 @@ export default new Router({
           }
         },
          {
-          name: 'leads',
-          path: 'leads',
-          component: lazyLoading('sinf-leads/Sinf-leads'),
+          name: 'opportunities',
+          path: 'oppo',
+          component: lazyLoading('sinf-opportunities/Sinf-opportunities'),
           meta: {
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
           }

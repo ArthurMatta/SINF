@@ -1,145 +1,94 @@
 <template>
   <div class="clients">
-    <vuestic-widget :headerText="'clients.tabs.title' | translate" class="no-v-padding">
-      <vuestic-tabs class="tabs" :names="[$t('clients.tabs.maps'), $t('clients.tabs.setupProfile'), $t('clients.tabs.overview')]">
-        <div :slot="'clients.tabs.overview' | translate" class="d-flex justify-content-center">
-          <overview-tab></overview-tab>
+    <vuestic-widget :headerText="$t('Clients') | translate" class="no-v-padding">
+      <vuestic-tabs class="tabs" :names="[$t('Location'), $t('Leads'), $t('Invoices')]">
+        <div :slot="'Invoices'">
+          <div class="row">
+            <div class="col-md-12">
+              <vuestic-widget :headerText="$t('tables.advanced')">
+                <vuestic-data-table
+                :apiUrl="apiUrl"
+                :tableFields="tableFields"
+                :itemsPerPage="itemsPerPage"
+                :defaultPerPage="defaultTablePerPage"
+                :sortFunctions="sortFunctions"
+                :apiMode="apiMode"
+                :paginationPath="paginationPath"
+                :queryParams="queryParams">
+                <spring-spinner
+                slot="loading"
+                :animation-duration="2500"
+                :size="70"
+                color="#4ae387"/>
+              </vuestic-data-table>
+            </vuestic-widget>
+          </div>
         </div>
-        <div :slot="'clients.tabs.maps' | translate" class="maps-tab">
-          <leaflet-map></leaflet-map>
-        </div>
-        <div :slot="'clients.tabs.setupProfile' | translate" class="d-flex justify-content-center">
-          <setup-profile-tab wizardType="simple"></setup-profile-tab>
-        </div>
-      </vuestic-tabs>
-    </vuestic-widget>
-
-    <div class="row">
-      <div class="col-md-4 d-flex">
-        <vuestic-widget :headerText="$t('clients.profileCard')" class="profile-card-widget">
-          <vuestic-profile-card :name="'Veronique Lee'" :location="'Malaga, Spain'" photoSource="https://i.imgur.com/NLrdqsk.png"
-                                :social="{twitter: 'twitter.com', facebook: 'facebook.com',
-                                  instagram: 'instagram.com'}">
-          </vuestic-profile-card>
-        </vuestic-widget>
       </div>
-      <div class="col-md-8 d-flex">
-        <vuestic-widget :headerText="$t('clients.chat')" class="chat-widget">
-          <vuestic-chat v-model="chatMessages"></vuestic-chat>
-        </vuestic-widget>
+      <div :slot="'Location' | translate" class="maps-tab">
+        <leaflet-map></leaflet-map>
+      </div>
+      <div :slot="'Leads' ">
+        <div class="row">
+          <div class="col-md-12">
+            <vuestic-widget :headerText="$t('tables.advanced')">
+              <vuestic-data-table
+              :apiUrl="apiUrl"
+              :tableFields="tableFields"
+              :itemsPerPage="itemsPerPage"
+              :defaultPerPage="defaultTablePerPage"
+              :sortFunctions="sortFunctions"
+              :apiMode="apiMode"
+              :paginationPath="paginationPath"
+              :queryParams="queryParams">
+              <spring-spinner
+              slot="loading"
+              :animation-duration="2500"
+              :size="70"
+              color="#4ae387"/>
+            </vuestic-data-table>
+          </vuestic-widget>
+        </div>
       </div>
     </div>
-
-    <div class="row bottom-widgets">
-      <div class="col-md-6 d-flex">
-        <vuestic-widget class="no-h-padding no-v-padding">
-          <vuestic-feed :initialPosts="posts"></vuestic-feed>
-        </vuestic-widget>
-      </div>
-      <div class="col-md-6 d-flex">
-        <vuestic-widget class="business-posts">
-          <vuestic-social-news :news="news" :url="'https://instagram.com/smartapant'"></vuestic-social-news>
-        </vuestic-widget>
-      </div>
-    </div>
-  </div>
+  </vuestic-tabs>
+</vuestic-widget>
+</div>
+</div>
+</div>
 </template>
 
 <script>
-import OverviewTab from 'components/sinf-dashboard/features-tab/FeaturesTab.vue'
-import SetupProfileTab from 'components/sinf-dashboard/setup-profile-tab/SetupProfileTab.vue'
-import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
+  import OverviewTab from 'components/sinf-dashboard/features-tab/FeaturesTab.vue'
+  import SetupProfileTab from 'components/sinf-dashboard/setup-profile-tab/SetupProfileTab.vue'
+  import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
+  import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget"
+  import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
+  import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
+  import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
+  import { SpringSpinner } from 'epic-spinners';
 
-export default {
-  name: 'Sinf-clients',
-  components: {
-    LeafletMap,
-    SetupProfileTab,
-    OverviewTab
-  },
-  data () {
-    return {
-      chatMessages: [
-        {
-          text: 'Hello! So glad you liked my work. Do you want me to shoot you?',
-          yours: false
-        },
-        {
-          text: 'Yeah, that would be cool. Maybe this Sunday at 3 pm?',
-          yours: true
-        },
-        {
-          text: 'Sounds great! See you later!',
-          yours: false
-        },
-        {
-          text: 'Should I bring a lightbox with me?',
-          yours: true
-        },
-        {
-          text: 'No, thanks. There is no need. Can we set up a meeting earlier?',
-          yours: false
-        },
-        {
-          text: 'I\'m working on Vuestic, so let\'s meet at 3pm. Thanks!',
-          yours: true
-        }
-      ],
-      posts: [
-        {
-          name: 'Irina Myatelskaya',
-          text: 'joined the network',
-          photoURL: 'https://i.imgur.com/VuTDC8u.png'
-        },
-        {
-          name: 'Andrei Hrabouski',
-          text: 'has just started a live video',
-          photoURL: 'https://i.imgur.com/W3mGrmW.png'
-        },
-        {
-          name: 'Evan You',
-          text: 'joined the network',
-          photoURL: 'https://i.imgur.com/D7DOGBH.jpg'
-        }
-      ],
-      news: [
-        {
-          photoURL: 'https://i.imgur.com/PiTDDcA.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/M6GugaM.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/vEy3fRU.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/Xrywphx.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/dqVtQGY.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/qP7rTCy.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/6YLsM43.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/9PAOx55.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/mVpc04D.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/WdbTSLn.png'
-        },
-        {
-          photoURL: 'https://i.imgur.com/ZXRIHfk.png'
-        }
-      ]
-    }
+  export default {
+    name: 'Sinf-clients',
+    components: {
+      LeafletMap,
+      SetupProfileTab,
+      OverviewTab,
+      SpringSpinner
+    },
+    data () {
+      return {
+        apiUrl: 'https://vuetable.ratiw.net/api/users',
+        apiMode: true,
+        tableFields: FieldsDef.tableFields,
+        itemsPerPage: ItemsPerPageDef.itemsPerPage,
+        sortFunctions: FieldsDef.sortFunctions,
+        paginationPath: '',
+        defaultTablePerPage: 6,
+        queryParams: QueryParams
+      }
+    }  
   }
-}
 </script>
 
 <style lang="scss" scoped>
@@ -172,6 +121,12 @@ export default {
       & > div {
         width: 100%;
       }
+    }
+  }
+
+  .color-icon-label-table {
+    td:first-child {
+      width: 1rem;
     }
   }
 </style>
