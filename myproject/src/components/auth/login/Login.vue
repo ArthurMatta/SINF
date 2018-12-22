@@ -45,6 +45,7 @@ export default {
         'password' : 'qualquer1' ,
         'instance' : 'DEFAULT' ,
         'grant_type' : 'password' ,
+        'company': 'BELAFLOR',
         'line' : 'professional'};
       const headers = { 'content-type': 'application/x-www-form-urlencoded' }
       

@@ -54,7 +54,7 @@
 
 	<vuestic-tabs class="tabs"
 			:names="[$t('Route')]"
-			ref="tabs">	
+			ref="tabs">
 		<div :slot="'Route' | translate" class="maps-tab">
 			<leaflet-map></leaflet-map>
 		</div>
@@ -100,38 +100,27 @@
       info : null
     }
   },
-  beforeMount(){
-    const qs = require('qs');
-    const data = {
-    'username': 'FEUP' ,
-    'password' : 'qualquer1' ,
-    'instance' : 'DEFAULT' ,
-    'grant_type' : 'password' ,
-    'line' : 'professional'};
-    var url = "http://localhost:2018/WebApi/token" ;
-
-    const options = {
-      method: 'POST',
-
-      data: qs.stringify(data),
-    };
-    const headers = { 'content-type': 'application/x-www-form-urlencoded' }
-    axios.post(url, qs.stringify(data),headers).then(response => (this.info = response.data['access_token']));
-
+  mounted(){
+		  this.getConsulta()
   },
   methods: {
-    launchEpicmaxToast () {
-      this.showToast(`Let's work together!`, {
-        icon: 'fa-star-o',
-        position: 'top-right',
-        duration: Infinity,
-        action: {
-          text: 'Hire us',
-          href: 'http://epicmax.co/#/contact',
-          class: 'vuestic-toasted-link'
-        }
-      })
-    }
+		getConsulta(){
+
+			var config = 
+			// Send a POST request
+			axios.post(
+			'http://localhost:2018/WebApi/Administrador/Consulta','\"Select * From Artigo\"', {headers : {
+				'cache-control': 'no-cache',
+				Authorization: 'Bearer '+ localStorage.token,
+				'Content-Type': 'application/json'
+			}}
+			).then( response => {
+				console.log(response)
+			}).catch(error => {
+				console.log(error);
+			})
+
+      }
   }
 }
 
