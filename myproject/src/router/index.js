@@ -190,6 +190,39 @@ export default new Router({
             }
           ],
         },
+         {
+          name: 'clients',
+          path: 'clients',
+          component: EmptyParentComponent,
+          children: [
+            {
+              name: 'overview',
+              path: 'overview',
+              component: lazyLoading('sinf-clients/Sinf-clients'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
+              }
+            },
+            {
+              name: 'saleDescription',
+              path: 'saleDescription',
+              component: lazyLoading('sinf-salesorders/Sinf-saleDescription'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
+              },
+              props: true
+            },
+            {
+              name: 'newClient',
+              path: 'newClient',
+              component: lazyLoading('sinf-opportunities/Sinf-opportunities'),
+              meta: {
+                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
+              },
+              props: true
+            }
+          ],
+        },
         {
           name: 'salesrep',
           path: 'salesrep',
@@ -214,14 +247,6 @@ export default new Router({
             wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tables'
           }
       },
-    	{
-          name: 'clients',
-          path: 'clients',
-          component: lazyLoading('sinf-clients/Sinf-clients'),
-          meta: {
-            wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Tabs'
-          }
-        },
         {
           name: 'ui',
           path: 'ui',

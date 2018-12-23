@@ -10,7 +10,18 @@ export default {
     },
     {
       name: 'clients',
-      displayName: 'Clients'
+      displayName: 'clients',
+      disabled: true,
+      children: [
+        {
+          name: 'overview',
+          displayName: 'Overview'
+        },
+        {
+          name: 'new Client',
+          displayName: 'menu.newClient'
+        }
+      ]
     },
     {
       name: 'salesorders',

@@ -1,134 +1,83 @@
 <template>
-  <div class="clients">
-    <vuestic-widget :headerText="$t('Clients') | translate" class="no-v-padding">
-      <vuestic-tabs class="tabs" :names="[$t('Location'), $t('Leads'), $t('Invoices')]">
-        <div :slot="'Invoices'">
-          <div class="row">
-            <div class="col-md-12">
-              <vuestic-widget :headerText="$t('tables.advanced')">
-                <vuestic-data-table
-                  :apiUrl="apiUrl"
-                  :tableFields="tableFields"
-                  :itemsPerPage="itemsPerPage"
-                  :defaultPerPage="defaultTablePerPage"
-                  :sortFunctions="sortFunctions"
-                  :apiMode="apiMode"
-                  :paginationPath="paginationPath"
-                  :queryParams="queryParams">
-                  <spring-spinner
-                    slot="loading"
-                    :animation-duration="2500"
-                    :size="70"
-                    color="#4ae387"/>
-                </vuestic-data-table>
-              </vuestic-widget>
-            </div>
-          </div>
-        </div>
-        <div :slot="'Location' | translate" class="maps-tab">
-          <leaflet-map></leaflet-map>
-        </div>
-        <div :slot="'Leads' ">
-          <deals-table
-            api-url="https://vuetable.ratiw.net/api/users"
-            :fields="fields"
-            :sort-order="sortOrder"
-            :append-params="moreParams"
-          >
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <vuestic-widget>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm color-icon-label-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Name</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="entry in tableData" :key="entry.ID">
+                <td></td>
+                <td>
+                  <router-link class="link" :to="{name: 'clientDescription', params: { deal: entry } }">
+                  {{ entry.Name }}
+                 </router-link>
+                </td>
+                <td align="middle"></td>
+              </tr>
+            </tbody>
             <template slot="name" slot-scope="props">
-              <router-link class="link" :to="{name: 'saleDescription', params: { deal: {name: props.rowData.name } } }">
-                {{ props.rowData.name }}
-              </router-link>
+              
             </template>
-          </deals-table>
+          </table>
         </div>
-      </vuestic-tabs>
-    </vuestic-widget>
+      </vuestic-widget>
+    </div>
   </div>
 </template>
 
 <script>
-  import OverviewTab from 'components/sinf-dashboard/features-tab/FeaturesTab.vue'
-  import SetupProfileTab from 'components/sinf-dashboard/setup-profile-tab/SetupProfileTab.vue'
-  import LeafletMap from 'components/maps/leaflet-maps/LeafletMap.vue'
-  import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget"
-  import FieldsDef from 'vuestic-components/vuestic-datatable/data/fields-definition'
-  import ItemsPerPageDef from 'vuestic-components/vuestic-datatable/data/items-per-page-definition'
-  import QueryParams from 'vuestic-components/vuestic-datatable/data/query-params'
-  import { SpringSpinner } from 'epic-spinners';
-  import DealsTable from '../sinf-salesorders/DealsTable'
-  import SinfFieldDefs from '../sinf-salesorders/SinfFieldDefs'
-
-  export default {
-    name: 'Sinf-clients',
-    components: {
-      LeafletMap,
-      SetupProfileTab,
-      OverviewTab,
-      SpringSpinner,
-      DealsTable,
-      SinfFieldDefs
-    },
-    data () {
-      return {
-        apiUrl: 'https://vuetable.ratiw.net/api/users',
-        fields: SinfFieldDefs,
-        apiMode: true,
-        tableFields: FieldsDef.tableFields,
-        itemsPerPage: ItemsPerPageDef.itemsPerPage,
-        sortFunctions: FieldsDef.sortFunctions,
-        paginationPath: '',
-        defaultTablePerPage: 6,
-        queryParams: QueryParams,
-        sortOrder: [
+import axios from "axios";
+import ClientsTable from "./ClientsTable";
+export default {
+  name: "Sinf-clients",
+  mounted: function() {
+    //this.getOpportunities();
+    console.log("mounted: got here");
+  },
+  data: function() {
+    return {
+      tableData: []
+    };
+  },
+  components: {},
+  methods: {
+    /*getOpportunities: function() {
+      var self = this;
+      const url = "http://localhost:2018/WebApi/";
+      axios
+        .post(
+          url + "Administrador/Consulta",
+          '"Select * From CabecOportunidadesVenda"',
           {
-            field: '__slot:name',
-            sortField: 'name',
-            direction: 'asc'
+            headers: {
+              "cache-control": "no-cache",
+              Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "application/json"
+            }
           }
-        ],
-        moreParams: {}
-      }
-    }  
+        )
+        .then(function(response) {
+          self.tableData = response.data["DataSet"]["Table"];
+          console.log(self.tableData);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }*/
   }
+};
 </script>
 
-<style lang="scss" scoped>
-  .tabs {
-    .overview-tab {
-      .explore-row {
-        display: none !important;
-      }
-    }
-
-    .maps-tab {
-      height: 500px;
-    }
+<style lang="scss">
+.color-icon-label-table {
+  td:first-child {
+    width: 1rem;
   }
-
-  .profile-card-widget, .chat-widget {
-    width: 100%;
-    .widget-body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      & > div {
-        width: 100%;
-      }
-    }
-  }
-
-  .bottom-widgets {
-    > div[class^='col'] {
-      & > div {
-        width: 100%;
-      }
-    }
-  }
-
-  .color-icon-label-table {
-    td:first-child {
-      width: 1rem;
-    }
-  }
+}
 </style>

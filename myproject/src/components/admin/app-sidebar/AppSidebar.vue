@@ -5,7 +5,7 @@
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-forms"></span>
-          <span>{{ $t('menu.leads') }}</span>
+          <span>{{ $t('Leads') }}</span>
         </span>
         <sidebar-link
           :to="{ name: 'overview' }">
@@ -28,14 +28,25 @@
           <span>{{ $t('menu.dashboard') }}</span>
         </span>
       </sidebar-link>
-      <sidebar-link
-        :to="{ name: 'clients' }">
+      <sidebar-link-group>
         <span slot="title">
           <span
             class="sidebar-menu-item-icon vuestic-icon vuestic-icon-user"></span>
           <span>{{ $t('Clients') }}</span>
         </span>
-      </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'overview' }">
+          <span slot="title">
+            <span>{{ $t('overview') }}</span>
+          </span>
+        </sidebar-link>
+        <sidebar-link
+          :to="{ name: 'newClient' }">
+          <span slot="title">
+            <span>{{ $t('new Client') }}</span>
+          </span>
+        </sidebar-link>
+      </sidebar-link-group>
       <sidebar-link
         :to="{ name: 'salesrep' }">
         <span slot="title">
