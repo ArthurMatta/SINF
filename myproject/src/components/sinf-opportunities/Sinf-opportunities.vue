@@ -52,26 +52,13 @@
 													<div class="form-group">
 														<div class="input-group">
 															<input id="simple-input" required/>
-															<label class="control-label" for="simple-input">{{'Phone'
+															<label class="control-label" for="simple-input">{{'Country'
 																| translate}}</label><i class="bar"></i>
 															</div>
 														</div>
 													</fieldset>
 												</div>
 												</div>
-
-										<div class="row justify-content-center">
-											<div class="col-md-4">
-												<fieldset>
-													<vuestic-simple-select
-													:label="'Select Salesman' | translate"
-													v-model="simpleSelectModel"
-													option-key="description"
-													v-bind:options="simpleOptions"
-													/>
-												</fieldset>
-												</div>
-											</div>
 
 										<div class="row justify-content-center">
 
