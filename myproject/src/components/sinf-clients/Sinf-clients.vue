@@ -7,7 +7,10 @@
             <thead>
               <tr>
                 <td></td>
+                <td>ID</td>
                 <td>Name</td>
+                <td>Address</td>
+                <td>Country</td>
               </tr>
             </thead>
             <tbody>
@@ -15,10 +18,13 @@
                 <td></td>
                 <td>
                   <router-link class="link" :to="{name: 'clientDescription', params: { deal: entry } }">
-                  {{ entry.Name }}
+                  {{ entry.Cliente }}
                  </router-link>
                 </td>
-                <td align="middle"></td>
+                <td align="middle">{{entry.Nome}}</td>
+                <td align="middle">{{entry.Fac_Mor}}</td>
+                <td align="middle">{{entry.Pais}}</td>
+
               </tr>
             </tbody>
             <template slot="name" slot-scope="props">
@@ -37,7 +43,7 @@ import ClientsTable from "./ClientsTable";
 export default {
   name: "Sinf-clients",
   mounted: function() {
-    //this.getOpportunities();
+    this.getClients();
     console.log("mounted: got here");
   },
   data: function() {
@@ -47,13 +53,12 @@ export default {
   },
   components: {},
   methods: {
-    /*getOpportunities: function() {
+    getClients: function() {
       var self = this;
       const url = "http://localhost:2018/WebApi/";
       axios
-        .post(
-          url + "Administrador/Consulta",
-          '"Select * From CabecOportunidadesVenda"',
+        .get(
+          url + "Base/Clientes/LstClientes",
           {
             headers: {
               "cache-control": "no-cache",
@@ -69,7 +74,7 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-    }*/
+    }
   }
 };
 </script>
