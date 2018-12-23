@@ -220,6 +220,15 @@
         </div>
       </div>
     </div>
+    <form name="convert" @submit.prevent="convert">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-primary">{{'ConvertToECL' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -302,6 +311,31 @@ export default {
             "WHERE IdOportunidade LIKE '" +
             OPVid +
             "'\"",
+          {
+            headers: {
+              "cache-control": "no-cache",
+              Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .then(function(response) {
+          self.propData = response.data["DataSet"]["Table"];
+          console.log(self.propData);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    convert(){
+      var self = this;
+      const url = "http://localhost:2018/WebApi/";
+      axios
+        .post(
+          url + "CRM/PropostasOPV/GenerateDocument/V/ORC/A/",
+          {
+            CodigoOPV: self.Oportunidade, NumeroPropostaOPV: 1
+          },
           {
             headers: {
               "cache-control": "no-cache",

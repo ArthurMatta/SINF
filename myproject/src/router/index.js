@@ -204,15 +204,6 @@ export default new Router({
               }
             },
             {
-              name: 'saleDescription',
-              path: 'saleDescription',
-              component: lazyLoading('sinf-salesorders/Sinf-saleDescription'),
-              meta: {
-                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
-              },
-              props: true
-            },
-            {
               name: 'newClient',
               path: 'newClient',
               component: lazyLoading('sinf-opportunities/Sinf-opportunities'),

@@ -5,8 +5,8 @@
         <div class="table-responsive">
           <table class="table table-striped table-sm color-icon-label-table">
             <thead>
-              <tr>
-                <td></td>
+              <tr >
+                <td ></td>
                 <td align="middle">ID</td>
                 <td align="middle">Entidade</td>
                 <td align="middle">Descrição</td>
