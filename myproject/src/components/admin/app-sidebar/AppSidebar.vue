@@ -1,6 +1,14 @@
 <template>
   <vuestic-sidebar :hidden="isOpen">
     <template slot="menu">
+    <sidebar-link
+        :to="{ name: 'dashboard' }">
+        <span slot="title">
+          <span
+            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-dashboard"></span>
+          <span>{{ $t('menu.dashboard') }}</span>
+        </span>
+      </sidebar-link>
       <sidebar-link-group>
         <span slot="title">
           <span
@@ -20,14 +28,6 @@
           </span>
         </sidebar-link>
       </sidebar-link-group>
-      <sidebar-link
-        :to="{ name: 'dashboard' }">
-        <span slot="title">
-          <span
-            class="sidebar-menu-item-icon vuestic-icon vuestic-icon-dashboard"></span>
-          <span>{{ $t('menu.dashboard') }}</span>
-        </span>
-      </sidebar-link>
       <sidebar-link-group>
         <span slot="title">
           <span
