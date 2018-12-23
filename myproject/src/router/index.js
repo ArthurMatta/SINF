@@ -196,7 +196,7 @@ export default new Router({
           component: EmptyParentComponent,
           children: [
             {
-              name: 'overview',
+              name: 'overviewClient',
               path: 'overview',
               component: lazyLoading('sinf-clients/Sinf-clients'),
               meta: {

@@ -14,7 +14,7 @@ export default {
       disabled: true,
       children: [
         {
-          name: 'overview',
+          name: 'overviewClient',
           displayName: 'Overview'
         },
         {

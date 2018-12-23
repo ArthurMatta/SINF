@@ -35,7 +35,7 @@
           <span>{{ $t('Clients') }}</span>
         </span>
         <sidebar-link
-          :to="{ name: 'overview' }">
+          :to="{ name: 'overviewClient' }">
           <span slot="title">
             <span>{{ $t('overview') }}</span>
           </span>
