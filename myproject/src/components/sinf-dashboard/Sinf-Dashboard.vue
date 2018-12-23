@@ -2,33 +2,10 @@
 	<div class="sinf-dashboard">
 		<vuestic-widget class="no-padding no-v-padding">
 			<vuestic-tabs class="tabs"
-			:names="[$t('Task List'), $t('Agenda')]"
+			:names="[$t('Task List')]"
 			ref="tabs">
 			<div :slot="$t('Task List')">
 				<div class="row">
-					<div class="col-md-12">
-						<vuestic-widget :headerText="$t('tables.advanced')">
-							<vuestic-data-table
-							:apiUrl="apiUrl"
-							:tableFields="tableFields"
-							:itemsPerPage="itemsPerPage"
-							:defaultPerPage="defaultTablePerPage"
-							:sortFunctions="sortFunctions"
-							:apiMode="apiMode"
-							:paginationPath="paginationPath"
-							:queryParams="queryParams">
-							<spring-spinner
-							slot="loading"
-							:animation-duration="2500"
-							:size="70"
-							color="#4ae387"/>
-						</vuestic-data-table>
-					</vuestic-widget>
-				</div>
-			</div>
-		</div>
-		<div :slot="$t('Agenda')">
-		<div class="row">
 					<div class="col-md-12">
 						<vuestic-widget :headerText="$t('tables.advanced')">
 							<vuestic-data-table
