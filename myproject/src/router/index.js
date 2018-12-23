@@ -36,7 +36,7 @@ export default new Router({
     ...demoRoutes,
     {
       path: '*',
-      redirect: {name: 'login'},
+      redirect: {name: 'dashboard'},
     },
     {
       path: '/auth',
