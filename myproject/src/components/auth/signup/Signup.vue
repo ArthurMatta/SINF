@@ -1,32 +1,12 @@
 <template>
   <div class="signup">
     <h2>{{'auth.createNewAccount' | translate}}</h2>
-    <form method="post" action="/auth/signup" name="signup">
-      <div class="form-group with-icon-right"
-           :class="{'has-error': errors.has('name'), 'valid': isFormFieldValid('name')}">
-        <div class="input-group">
-          <input
-            type="text"
-            name="name"
-            v-model="name"
-            v-validate="'required|min:3|max:50|alpha_spaces'"
-            required="required"/>
-          <i
-            class="fa fa-exclamation-triangle error-icon icon-right input-icon"></i>
-          <i class="fa fa-check valid-icon icon-right input-icon"></i>
-          <label class="control-label">Name</label><i class="bar"></i>
-          <small v-show="errors.has('name')" class="help text-danger">{{
-            errors.first('name') }}
-          </small>
-        </div>
-      </div>
       <div class="form-group with-icon-right"
            :class="{'has-error': errors.has('email'), 'valid': isFormFieldValid('email')}">
         <div class="input-group">
           <input
             type="text"
-            id="email"
-            name="email"
+            v-model="email"
             v-validate="'required|email'"
             required="required"/>
           <i
@@ -40,31 +20,11 @@
         </div>
       </div>
       <div class="form-group with-icon-right"
-           :class="{'has-error': errors.has('phone'), 'valid': isFormFieldValid('phone')}">
-        <div class="input-group">
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            v-validate="'required|digits:9'"
-            required="required"/>
-          <i
-            class="fa fa-exclamation-triangle icon-right input-icon"
-            v-show="errors.has('phone')"></i>
-          <i class="fa fa-check valid-icon icon-right input-icon"></i>
-          <label class="control-label" for="phone">Phone number</label><i class="bar"></i>
-          <small v-show="errors.has('phone')" class="help text-danger">{{
-            errors.first('phone') }}
-          </small>
-        </div>
-      </div>
-      <div class="form-group with-icon-right"
            :class="{'has-error': errors.has('password'), 'valid': isFormFieldValid('password')}">
         <div class="input-group">
           <input
             type="password"
-            id="password"
-            name="password"
+            v-model="password"
             v-validate="'required|min:8|max:25'"
             required="required"/>
           <i
@@ -97,24 +57,39 @@
         </div>
       </div>
       <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between down-container">
-        <button class="btn btn-primary" type="submit">
-          {{'auth.signUp' | translate}}
+        <button class="btn btn-primary" @click ="signUp">
+          Sign Up
         </button>
         <router-link class='link' :to="{name: 'login'}">{{'auth.alreadyJoined' | translate}}</router-link>
       </div>
-    </form>
   </div>
 </template>
 
 <script>
+
+
+import firebase from 'firebase';
+
 export default {
   name: 'signup',
-  data () {
-    return {
-      checkboxOneModel: false
-    }
-  },
+  data() {
+      return {
+        email: '',
+        password: '',
+        checkboxOneModel: false
+      }
+    },
   methods: {
+    signUp: function() {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+          (user) => {
+            this.$router.replace('home')
+          },
+          (err) => {
+            alert('Oops. ' + err.message)
+          }
+        );
+      },
     isFormFieldValid (field) {
       let isValid = false
       if (this.formFields[field]) {

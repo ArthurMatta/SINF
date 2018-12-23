@@ -5,13 +5,13 @@
       <div class="alert alert-danger" v-if="error">{{ error }}</div>
       <div class="form-group">
         <div class="input-group">
-          <input type="text" id="email" required="required"/>
+          <input type="text" v-model="email" required="required"/>
           <label class="control-label" for="email">{{'auth.email' | translate}}</label><i class="bar"></i>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
-          <input type="password" id="password" required="required"/>
+          <input type="password" v-model="password" required="required"/>
           <label class="control-label" for="password">{{'auth.password' | translate}}</label><i class="bar"></i>
         </div>
       </div>
@@ -28,6 +28,9 @@
 </template>
 
 <script>
+
+import firebase from 'firebase'
+
 export default {
   name: 'login',
   data () {
@@ -38,7 +41,17 @@ export default {
     }
   },
   methods: {
-    login () {
+    login: function() {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+          (user) => {
+            this.$router.replace('home')
+          },
+          (err) => {
+            alert('Oops. ' + err.message)
+          }
+        );
+      },
+    /*login () {
       const qs = require('qs');
       const data = {
         'username': 'FEUP' ,
@@ -52,7 +65,7 @@ export default {
       this.$http.post('/token',qs.stringify(data),headers)
         .then(request => this.loginSuccessful(request))
         .catch(() => this.loginFailed())
-    },
+    },*/
     loginSuccessful (req) {
       console.log(req)
       if (!req.data['access_token']) {
