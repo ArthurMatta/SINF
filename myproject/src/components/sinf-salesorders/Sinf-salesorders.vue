@@ -7,23 +7,28 @@
             <thead>
               <tr>
                 <td></td>
-                <td>Name</td>
+                <td align="middle">ID</td>
+                <td align="middle">Entidade</td>
+                <td align="middle">Descrição</td>
+                <td align="middle">Estado Encomenda</td>
+                
               </tr>
             </thead>
             <tbody>
               <tr v-for="entry in tableData" :key="entry.ID">
                 <td></td>
-                <td>
+                <td align="middle">
                   <router-link class="link" :to="{name: 'saleDescription', params: { deal: entry } }">
-                  {{ entry.Entidade }}
+                  {{ entry.Oportunidade }}
                  </router-link>
                 </td>
+                <td align="middle">{{entry.Entidade}}</td>
+                <td align="middle">{{entry.Descricao}}</td>
+                <td align="middle">{{entry.EncomendaEfectuada}}</td>
                 <td align="middle"></td>
               </tr>
             </tbody>
-            <template slot="name" slot-scope="props">
-              
-            </template>
+
           </table>
         </div>
       </vuestic-widget>
@@ -53,7 +58,7 @@ export default {
       axios
         .post(
           url + "Administrador/Consulta",
-          '"Select * From CabecOportunidadesVenda"',
+          '"Select * From CabecOportunidadesVenda  "',
           {
             headers: {
               "cache-control": "no-cache",

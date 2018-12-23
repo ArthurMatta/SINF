@@ -50,6 +50,19 @@ export default {
             alert('Oops. ' + err.message)
           }
         );
+        const qs = require('qs');
+        const data = {
+        'username': 'FEUP' ,
+        'password' : 'qualquer1' ,
+        'instance' : 'DEFAULT' ,
+        'grant_type' : 'password' ,
+        'company': 'BELAFLOR',
+        'line' : 'professional'};
+      const headers = { 'content-type': 'application/x-www-form-urlencoded' }
+      
+      this.$http.post('/token',qs.stringify(data),headers)
+        .then(request => this.loginSuccessful(request))
+        .catch(() => this.loginFailed())
       },
     /*login () {
       const qs = require('qs');
