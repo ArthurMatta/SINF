@@ -182,7 +182,7 @@ export default new Router({
             {
               name: 'newLead',
               path: 'newLead',
-              component: lazyLoading('sinf-salesorders/newLead/newLead'),
+              component: lazyLoading('sinf-salesorders/newLead'),
               meta: {
                 wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Timelines'
               },

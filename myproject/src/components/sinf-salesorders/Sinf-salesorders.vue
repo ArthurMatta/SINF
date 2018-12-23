@@ -1,59 +1,83 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <vuestic-widget :headerText="$t('tables.deals')">
-          <deals-table
-            api-url="https://vuetable.ratiw.net/api/users"
-            :fields="fields"
-            :sort-order="sortOrder"
-            :append-params="moreParams"
-          >
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <vuestic-widget>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm color-icon-label-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Name</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="entry in tableData" :key="entry.ID">
+                <td></td>
+                <td>
+                  <router-link class="link" :to="{name: 'saleDescription', params: { deal: entry } }">
+                  {{ entry.Entidade }}
+                 </router-link>
+                </td>
+                <td align="middle"></td>
+              </tr>
+            </tbody>
             <template slot="name" slot-scope="props">
-              <router-link class="link" :to="{name: 'saleDescription', params: { deal: {name: props.rowData.name } } }">
-                {{ props.rowData.name }}
-              </router-link>
+              
             </template>
-          </deals-table>
-        </vuestic-widget>
-      </div>
+          </table>
+        </div>
+      </vuestic-widget>
     </div>
   </div>
 </template>
 
-
 <script>
-  import DealsTable from './DealsTable'
-  import FieldsDef from './SinfFieldDefs'
-  import VuesticWidget from "../../vuestic-theme/vuestic-components/vuestic-widget/VuesticWidget";
-
-  export default {
-    name: "Sinf-salesorders",
-    components: {
-      VuesticWidget,
-      DealsTable,
-    },
-    data () {
-      return {
-        apiUrl: 'https://vuetable.ratiw.net/api/users',
-        fields: FieldsDef,
-        sortOrder: [
+import axios from "axios";
+import DealsTable from "./DealsTable";
+export default {
+  name: "Sinf-salesorders",
+  mounted: function() {
+    this.getOpportunities();
+    console.log("mounted: got here");
+  },
+  data: function() {
+    return {
+      tableData: []
+    };
+  },
+  components: {},
+  methods: {
+    getOpportunities: function() {
+      var self = this;
+      const url = "http://localhost:2018/WebApi/";
+      axios
+        .post(
+          url + "Administrador/Consulta",
+          '"Select * From CabecOportunidadesVenda"',
           {
-            field: '__slot:name',
-            sortField: 'name',
-            direction: 'asc'
+            headers: {
+              "cache-control": "no-cache",
+              Authorization: "Bearer " + localStorage.token,
+              "Content-Type": "application/json"
+            }
           }
-        ],
-        moreParams: {}
-      }
+        )
+        .then(function(response) {
+          self.tableData = response.data["DataSet"]["Table"];
+          console.log(self.tableData);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
+};
 </script>
 
 <style lang="scss">
-  .color-icon-label-table {
-    td:first-child {
-      width: 1rem;
-    }
+.color-icon-label-table {
+  td:first-child {
+    width: 1rem;
   }
+}
 </style>

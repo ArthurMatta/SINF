@@ -105,8 +105,6 @@
   },
   methods: {
 		getConsulta(){
-
-			var config = 
 			// Send a POST request
 			axios.post(
 			'http://localhost:2018/WebApi/Administrador/Consulta','\"Select * From Artigo\"', {headers : {
@@ -119,6 +117,10 @@
 			}).catch(error => {
 				console.log(error);
 			})
+
+			//format data 
+
+			
 
       }
   }

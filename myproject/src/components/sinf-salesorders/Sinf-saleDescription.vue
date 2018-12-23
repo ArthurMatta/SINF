@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <vuestic-widget>
           <div class="typo-headers">
-            <h1>{{deal.name}}</h1>
+            <h1>{{deal.Entidade}}</h1>
           </div>
         </vuestic-widget>
       </div>
@@ -281,34 +281,6 @@
                   <features-tab></features-tab>
                 </div>
               </vuestic-tabs>
-            </vuestic-widget>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <vuestic-widget class="no-h-padding no-v-padding" :headerText="$t('timelines.verticalLabel')">
-              <vuestic-timeline vertical>
-                <vuestic-timeline-item active>
-                  <span class="vuestic-timeline-item__text" slot="before">{{ dateFirst }}</span>
-                  <vuestic-card
-                    slot="after"
-                    stripe="success"
-                  >
-                    <template slot="title">{{ titleFirst }}</template>
-                    {{ contentFirst }}
-                  </vuestic-card>
-                </vuestic-timeline-item>
-                <vuestic-timeline-item>
-                  <span class="vuestic-timeline-item__text" slot="before">{{ dateSecond }}</span>
-                  <vuestic-card
-                    slot="after"
-                    stripe="success"
-                  >
-                    <template slot="title">{{ titleSecond }}</template>
-                    {{ contentFirst }}
-                  </vuestic-card>
-                </vuestic-timeline-item>
-              </vuestic-timeline>
             </vuestic-widget>
           </div>
         </div>
