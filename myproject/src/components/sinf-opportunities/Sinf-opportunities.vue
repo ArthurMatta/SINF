@@ -3,7 +3,7 @@
     <div class="form-elements">
       <div class="row">
         <div class="col-md-8">
-          <vuestic-widget :headerText="'Create Lead' | translate">
+          <vuestic-widget :headerText="'Create Client' | translate">
             <form name="newLead" @submit.prevent="newLead">
               <div class="row justify-content-center">
                 <div class="col-md-4">
